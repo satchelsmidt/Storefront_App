@@ -71,21 +71,24 @@ function buyProducts() {
                     ])
                     .then(answers => {
                         if (answers.confirmOrder) {
-                            console.log("\n" + "items ORDERED: ", itemsOrdered + typeof (itemsOrdered))
-                            console.log("items STOCKED ", itemsStocked + typeof (itemsStocked))
+                            console.log("\n" + "Number Ordered: ", itemsOrdered)
+                            console.log("Number Stocked: ", itemsStocked)
                             if (itemsOrdered > itemsStocked) {
-                                console.log("NOT ENOUGH QUANTITY, TRY AGAIN")
+                                console.log("\n" + "NOT ENOUGH QUANTITY, TRY AGAIN" + "\n")
                                 buyProducts();
                             }
                             else {
                                 console.log("\n" + "ENOUGH QUANTITY, ORDER PROCESSED!")
-                                // itemsStocked = itemsStocked - itemsOrdered;
+                                itemsStocked = itemsStocked - itemsOrdered;
                                 //UPDATE NUMS IN SQL
                                 updateProduct();
 
                                 // CALCULATE ORDER COST
                                 var orderCost = itemPrice * itemsOrdered
                                 console.log("\n" + "TOTAL COST: $", orderCost)
+
+                                //TODO: need to add in some sort of loop to return to app start (or exit)once product is bought
+                                // buyProducts();
                             }
                         }
                         else {
@@ -98,12 +101,11 @@ function buyProducts() {
 }
 
 function updateProduct() {
-    var query = connection.query(
+  connection.query(
         "UPDATE products SET ? WHERE ?",
-        //Use two question marks because you are updating both the key and the value in the stuff you are adding (SET key WHERE value)
         [
             {
-                stock_quantity: itemsStocked - itemsOrdered
+                stock_quantity: itemsStocked
         },
             {
                 product_name: productOrdered
@@ -111,11 +113,8 @@ function updateProduct() {
         ],
         function (err, res) {
             if (err) throw err;
-            console.log(res.affectedRows + " products updated!\n");
-            console.log("THIS SHOULD BE A NEW NUMBER: ", res[0])
+            console.log(res.affectedRows + " product updated!\n");
+            console.log("New Item Quantity: ", itemsStocked)
         }
     );
-
-    // logs the actual query being run
-    console.log(query.sql);
 }
