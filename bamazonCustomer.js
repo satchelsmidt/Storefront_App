@@ -25,7 +25,6 @@ connection.connect(function (err) {
     if (err) throw err;
     console.log("connected as id " + connection.threadId);
     showProducts();
-    //Function here to run inquirer prompt
 });
 
 function showProducts() {
