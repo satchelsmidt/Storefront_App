@@ -69,23 +69,63 @@ function viewInventory() {
 
 function addInventory() {
     // TODO: run a connection.query to SELECT * FROM products
+    connection.query('SELECT product_name, stock_quantity FROM products', function (err, res) {
+        if (err) throw err;
 
-    inquirer
-        .prompt([
-            {
-                type: 'list',
-                name: 'chooseItem:',
-                choices: function () {
-                    // loop over the res object that we get back from the database
+        inquirer
+            .prompt([
+                {
+                    type: 'list',
+                    name: 'chooseItem:',
+                    message: 'Which item would you like to order inventory for?',
+                    choices: function productNames() {
+                        var products = []
 
-                    // on each iteration, push only the product_name into a new array and return the new array
+                        for (let i = 0; i < res.length; i++) {
+                            products.push(res[i].product_name)
+                        }
+                        return products
+                    }
+                },
+                {
+                    type: 'number',
+                    name: 'quantity:',
+                    message: 'How many units would you like to order?'
                 }
-            }
-        ])
-        .then(answers => {
-            //TODO: use the mysql connection to run a SELECT * FROM products WHERE product_name= answers.item
-        });
-};
+            ])
+            .then(answers => {
+                // TODO: use the mysql connection to run a SELECT * FROM products WHERE product_name= answers.item
+
+                // connection.query('SELECT product_name, stock_quantity FROM products WHERE product_name = ?', answers.chooseItem, function (err, res) {
+                //if (err) throw err;
+
+                console.log("RESPONSE: ", res)
+                console.log("ANSWERS:" + answers)
+
+                // console.log("QUantity:" + answers)
+                // });
+
+                // connection.query("UPDATE products SET ? WHERE ?",
+                //         [
+                //             {
+                //                 stock_quantity: stock_quantity + parseInt(answers.quantity)
+                //             },
+                //             {
+                //                 product_name: answers.chooseItem
+                //             }
+                //         ],
+                //         function (err, res) {
+                //             if (err) throw err;
+                //             console.log(res.affectedRows + " product updated!\n");
+                //             console.log("Product Ordered", answers.chooseItem);
+                //             console.log("Quantity Ordered:", parseInt(answers.quantity));
+                //             console.log("New Item Quantity: ", stock_quantity);
+                //         }
+                //     );
+                });
+            });
+    };
+
 
 
 function addProducts() {
