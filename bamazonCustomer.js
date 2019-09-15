@@ -87,7 +87,6 @@ function buyProducts() {
                                 console.log("\n" + "TOTAL COST: $", orderCost)
 
                                 //TODO: need to add in some sort of loop to return to app start (or exit)once product is bought
-                                // buyProducts();
                             }
                         }
                         else {
