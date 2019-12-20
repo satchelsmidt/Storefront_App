@@ -14,14 +14,14 @@ The customer application allows the customer to view a list of products in the s
 
 Here is a gif of this view:
 <br>
-<img src="/assets/storefront_gif_1.gif" width="400" height="200"/>
+<img src="/assets/storefront_gif_1.gif" width="600" height="250"/>
 
 
 The manager application allows a user to view the current list of products, view products with an inventory level under 5 units, and reorder inventory for certain items. 
 
 Here is a gif of this view:
 <br>
-<img src="/assets/storefront_gif_2.gif" width="400" height="200"/>
+<img src="/assets/storefront_gif_2.gif" width="600" height="250"/>
 
 ### Technology Used
 * Javascript
