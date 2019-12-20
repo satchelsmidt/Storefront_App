@@ -4,7 +4,7 @@
 
 This is a CLI (Command Line Interface) application designed to mimic an online storefront. Users can run the app as either a customer or a manager, and perform a different series of tasks unique to each option. 
 
-App wa built to test development skills in a terminal-type environment, with minimal UI/UX components.  
+App was built to test development skills in a terminal-type environment, with minimal UI/UX components.  
 
 ### Walkthrough
 
@@ -22,6 +22,7 @@ The manager application allows a user to view the current list of products, view
 Here is a gif of this view:
 <br>
 <img src="/assets/storefront_gif_2.gif" width="600" height="250"/>
+
 
 ### Technology Used
 * Javascript
@@ -49,7 +50,7 @@ __New View, 'Supervisor View'__:
  - Create New Department
 
 * When a supervisor selects View Product Sales by Department, the app should display a summarized table in their terminal/bash window. Use the table below as a guide.
-<br>
+
 <img src="/assets/future_dev.PNG" width="600" height="200"/>
 
 * The total_profit column should be calculated on the fly using the difference between over_head_costs and product_sales. total_profit should not be stored in any database. You should use a custom alias.
