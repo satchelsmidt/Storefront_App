@@ -32,6 +32,8 @@ Here is a gif of this view:
 
 ### Future Development
 
+* Add footer with copyright + contact info
+
 __Manager View__: 
 * If a manager selects Add New Product, it should allow the manager to add a completely new product to the store.
 
